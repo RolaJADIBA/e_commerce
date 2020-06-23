@@ -1,0 +1,34 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New Categorie{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+
+        {% for message in app.flashes('success') %}
+            <div class='alert alert-success'>
+                {{message}}
+            </div>
+        {% endfor %}
+        
+        <h1>Créer un nouvelle categorie</h1>
+        {{ form_start(form) }}
+        
+        <div class="row">
+        
+            <div class="col-md-8 p-3">
+                {{ form_row(form.nom, { 'attr': { 'class':'form-control'} }) }}
+            </div>
+
+            <div class="col-md-4 p-3 border-0 ">
+                <button class="btn btn-info btn-block btn-sm mt-3">Publier</button>
+                <a href="{{ path('categorie_index') }}" class="btn btn-outline-secondary btn-block btn-sm mt-3">Retour à la liste des categories</a>
+            </div>
+        </div>
+    
+    </section>
+
+     {{ form_end(form) }}
+
+{% endblock %}

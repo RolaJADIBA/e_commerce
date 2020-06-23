@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Paramètres - Bon Temps Roulé{% endblock %}
+
+{% block body %}
+
+<section class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="loginBox">
+         <h5 class="text-white">Modifier ton adresse e-mail</h5>
+         <div class="mt-5">
+        {{ form_start(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, { 'attr': { 'class':'form-control'} }) }}
+            </div>
+
+            <button type="submit">Mettre à jour mes informations</button>
+            {# <a href="">supprimer mon compte</a> #}
+
+        {{ form_end(form) }}
+        </div>
+            
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

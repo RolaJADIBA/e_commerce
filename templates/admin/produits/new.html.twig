@@ -1,0 +1,70 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Ajout Produit{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <h1>Ajouter un nouveau produit</h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-8 p-3">
+                {{ form_row(form.nom,{ 'attr': { 'class':'form-control'} }) }}
+                {{ form_row(form.description, { 'attr': { 'class':'form-control'} }) }}
+                {{ form_row(form.prix, { 'attr': { 'class':'form-control'} }) }}
+                {{ form_row(form.categorie, { 'attr': { 'class':'form-control'} }) }}
+                {# {{ form_row(form.options, { 'attr': { 'class':'form-control'} }) }} #}
+                {{ form_row(form.colors, { 'attr': { 'class':'form-control'} }) }}
+                {{ form_row(form.optionGroupe, { 'attr': { 'class':'form-control'} }) }}
+
+            </div>
+            <div class="col-md-4 p-3 border-0 ">
+                {{ form_row(form.images, { 'attr': { 'class':'form-control'} }) }}
+                {{ form_row(form.image_choisi, { 'attr': { 'class':'form-control'} }) }}
+                <button class="btn btn-primary btn-block btn-sm mt-3">Publier</button>
+                <a href="{{ path('produits_index') }}" class="btn btn-outline-secondary btn-block btn-sm mt-3">Retour à la liste des produits</a>
+            </div>
+
+        </div>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+
+    {# parent positionne à l endroit meme, les éléments contenus dans le block""javascripts" #}
+    {# contenu dan sle fichier Twig base.html.twig #}
+{{parent()}} 
+<script>
+    $(function(){
+
+        $("[type='file']").change(function(e){
+            $(this).siblings('label').html(e.target.files[0].name);
+        });
+
+        $('#produit_option').change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            // Simulate form data, but only include the selected sport value.
+            var data = {};
+            data[$(this).attr('name')] = $(this).val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    // Replace current position field ...
+                    $('#produit_tailles').replaceWith(
+                         // ... with the returned one from the AJAX response.
+                         $(html).find('#produit_tailles')
+                    );
+                // Position field now displays the appropriate positions.
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}

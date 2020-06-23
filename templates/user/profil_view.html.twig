@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Paramètres - Bon Temps Roulé
+{% endblock %}
+
+{% block body %}
+
+	<section class="container-fluid">
+		<div class="row justify-content-center mt-5">
+			<div class="paramBox">
+				<div>
+					<h5>
+						<a href="{{ path('account_edit_info_connexion')}}">Informations de connexion</a>
+					</h5>
+					<p>Modifier ton adresse e-mail</p>
+				</div>
+				<div class="separator mt-5"></div>
+				<div class="mt-5">
+					<h5>
+						<a href="{{ path('account_edit_info_security')}}">Sécurité</a>
+					</h5>
+					<p>Modifie ton mot de passe</p>
+				</div>
+				<div class="separator mt-5"></div>
+				<div class="mt-5">
+					<h5>
+						<a href="{{ path('account_edit_info_personnel')}}">Informations personnelles</a>
+					</h5>
+					<p>Modifie ton nom, ton prenom</p>
+				</div>
+			</div>
+		</section>
+
+		{# <div class="list-group">
+		        <a href="#" class="list-group-item list-group-item-action">
+		            <div class="d-flex w-100 justify-content-between">
+		            <h5 class="mb-1">Informations de connexion </h5>
+		            </div>
+		            <p class="mb-1">
+		                Modifier ton adresse e-mail
+		            </p>
+		        </a>
+		        <a href="#" class="list-group-item list-group-item-action">
+		            <div class="d-flex w-100 justify-content-between">
+		            <h5 class="mb-1">Sécurité</h5>
+		            </div>
+		            <p class="mb-1">
+		                Modifie ton mot de passe
+		            </p>
+		        </a>
+		        <a href="#" class="list-group-item list-group-item-action">
+		            <div class="d-flex w-100 justify-content-between">
+		            <h5 class="mb-1">Informations personnelles</h5>
+		            </div>
+		            <p class="mb-1">
+		            Modifie ton nom, ton adresse, ta ville, ton code postal etc...
+		            </p>
+		        </a>
+		        </div> #}
+
+
+	{% endblock %}

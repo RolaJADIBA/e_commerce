@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} produit {% endblock %}
+
+{% block body %}
+
+<div class="container">
+	<div class="row justify-content-center mt-5">
+		{% for produit in produits %}
+			<div class="card mr-5 produit" style="width: 18rem;">
+				<a href="{{ path('details', {'id': produit.id}) }}">
+					<img src="{{ asset('img_choisi/' ~ produit.imageChoisi ) }}" class="card-img-top" alt="{{ produit.nom }}">
+				</a>
+				<div class="card-body">
+					<a href="{{ path('details', {'id': produit.id}) }}">
+						<p class="text-secondary">{{ produit.nom }}</p>
+					</a>
+					<p class="prix">{{ produit.prix }}€</p>
+                    <a class="btn btn-primary btn-sm text-center" href="{{ path('details', {'id': produit.id}) }}">Ajouter au panier</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+
+{% endblock %}

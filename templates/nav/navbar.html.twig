@@ -1,0 +1,178 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{ path('accueil')}}"><img class="ml-3" src="{{ asset('logo.png')}}" height="100" alt="logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav m-auto">
+
+      {# FEMME #}
+      <div class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Femme
+        </a>
+
+        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+          {# VETEMENTS #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Vêtements </a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('robe')}}">Robes</a></li>
+                  <li><a href="{{ path('tShirtFemme')}}">T-shirts</a></li>
+                  <li><a href="{{ path('blouses')}}">Blouses</a></li>
+                  <li><a href="{{ path('monteauxVesteFemme')}}">Monteaux & Vestes</a></li>
+                  <li><a href="{{ path('pantalonFemme')}}">Pantalons</a></li>
+                  <li><a href="{{ path('jupes')}}">Jupes</a></li>
+                  <li><a href="{{ path('shortsFemme')}}">Shorts</a></li>
+                  <li><a href="{{ path('vetementsPlage')}}">Vêtements de plage</a></li>
+                </ul>
+              </li>
+
+        {# Chausseurs&Sacs #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Chausseurs & Sacs</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('chausseursFemme')}}">Chausseurs</a></li>
+                  <li><a href="{{ path('sacs')}}">Sacs</a></li>
+                </ul>
+              </li>
+
+
+          {# ACCESSOIRES #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Accessoires</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('bijoux')}}">Bijoux</a></li>
+                  <li><a href="{{ path('lunettesSoliel')}}">Lunettes de soliel</a></li>
+                </ul>
+              </li>
+
+
+          </ul>
+        </div>
+
+
+    {# Homme #}
+    <div class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Homme
+        </a>
+
+        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+          {# VETEMENTS #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">Vêtements</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('chemises')}}">Chemises</a></li>
+                  <li><a href="{{ path('pantalonHomme')}}">Pantalons</a></li>
+                  <li><a href="{{ path('tShirtHomme')}}">T-shirts</a></li>
+                  <li><a href="{{ path('shortHomme')}}">Shorts</a></li>
+                  <li><a href="{{ path('polos')}}">Polos</a></li>
+                  <li><a href="{{ path('monteauxVesteHomme')}}">Monteaux & Vestes</a></li>
+                  <li><a href="{{ path('maillots')}}">Maillots de bain</a></li>
+                </ul>
+              </li>
+
+        {# Chausseurs&Sacs #}
+              <li class="dropdown sub">
+                <a tabindex="-1" href="{{ path('chausseursHomme') }}">Chausseurs & Sacs</a>
+              </li>
+
+
+          {# ACCESSOIRES #}
+              <li class="dropdown sub">
+                <a tabindex="-1" href="{{ path('accessoires')}}">Accessoires</a>
+              </li>
+
+          </ul>
+        </div>
+
+
+
+      {# Enfants #}
+      <div class="nav-item dropdown">
+
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Enfants
+        </a>
+
+        <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+          {# ADOS #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="">Ados</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('adosFille')}}">Fille(7-12 ans)</a></li>
+                  <li><a href="{{ path('adosGarcon')}}">Garçon(7-12 ans)</a></li>                  
+                </ul>
+              </li>
+
+        {# PETITS #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="">Petits</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('petitFille')}}">Fille(1-6 ans)</a></li>
+                  <li><a href="{{ path('petitGarcon')}}">Garçon(1-6 ans)</a></li>
+                </ul>
+              </li>
+
+
+          {# BEBE #}
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="">Bébé</a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ path('bebeFille')}}">bébé fille</a></li>
+                  <li><a href="{{ path('bebeGarcon')}}">bébé garçon</a></li>
+                </ul>
+              </li>
+
+
+          </ul>
+        </div>
+
+      {# About Us #}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('propos')}}" tabindex="-1" aria-disabled="true">A propos</a>
+      </li>
+
+      {# Contact #}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('contact')}}" tabindex="-1" aria-disabled="true">Contact</a>
+      </li>
+    </ul>
+
+    <div class="nav-item dropdown">
+            {% if app.user %}
+                <a aria-expanded="true" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                    Bienvenue,
+                    {{ app.user.prenom }}</a>
+                <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                    <a class="dropdown-item" href="{{ path('compte') }}">Mon Compte</a>
+                    <a class="dropdown-item" href="">Mes Commandes</a>
+                    <div class="dropdown-divider"></div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="dropdown-item text-warning" href="{{ path('accueil_admin') }}">Administration</a>
+                    {% endif %}
+                        <a class="dropdown-item text-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+                </div>
+            {% else %}
+                <a aria-expanded="true" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+                    Connexion / inscription</a>
+                <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
+                    <a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a>
+                    <a class="dropdown-item" href="{{ path('app_register') }}">S'inscrire</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="mr-3">
+            <a href="{{ path('shop') }}"><i class="fas fa-shopping-bag fa-2x"></i></a>
+            {% if app.session.get('panier')|length > 0 %}
+                <span class="badge badge-primary">{{ app.session.get('panier')|length }}</span>   
+            {% endif %}
+        </div>
+        </div>
+  </div>
+</nav>

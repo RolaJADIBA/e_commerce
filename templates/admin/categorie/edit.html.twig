@@ -1,0 +1,35 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Modifier Categorie{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+    
+        {% for message in app.flashes('success') %}
+            <div class='alert alert-success'>
+                {{message}}
+            </div>
+        {% endfor %}
+
+        <h1>Modifier le Categorie</h1>
+            
+            {{ form_start(form) }}
+        
+        <div class="row">
+            
+            <div class="col-md-8 p-3">
+                {{ form_row(form.nom, { 'attr': { 'class':'form-control'} }) }}
+            </div>
+
+            <div class="col-md-4 p-3 border-0 ">
+                <button class="btn btn-primary btn-block btn-sm mt-3">Modifier</button>
+                <a href="{{ path('categorie_index') }}" class="btn btn-outline-secondary btn-block btn-sm mt-3">Retour à la liste des categories</a>
+                <a href="{{ path('categorie_delete', {'id': categorie.id}) }}" class="btn btn-danger btn-block btn-sm mt-3">Supprimer</a>
+            </div>
+            </div>
+            {{ form_end(form) }}
+
+        </section>
+
+{% endblock %}

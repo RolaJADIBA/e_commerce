@@ -1,0 +1,32 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Option{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <h5 class="mt-5">Option :{{ option.id }}</h5>
+
+    <table class="table border mt-3">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ option.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ option.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-info btn-sm" href="{{ path('options_index') }}">Retour à la liste des options</a>
+
+    <a class="btn btn-primary btn-sm" href="{{ path('options_edit', {'id': option.id}) }}">Modifier</a>
+
+    <a class="btn btn-danger btn-sm" href="{{ path('options_delete', {'id': option.id}) }}">Supprimer</a>
+
+</div>
+
+{% endblock %}

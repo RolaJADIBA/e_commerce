@@ -1,0 +1,76 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+{% block body %}
+
+     <div class="container">
+        <h3>Produit: {{ produit.id }}</h3>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ produit.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ produit.nom }}</td>
+                </tr>
+
+                <tr>
+                    <th>Colors</th>
+                    {% for color in produit.colors %}
+                       <td><span class="dot" style="background-color: {{color}}"></span></td> 
+                       {# {{dump(color)}} #}
+                        <style>
+                            .dot{
+                                display: inline-block;
+                                height: 30px;
+                                width: 30px;
+                                border: 3px solid gray;
+                                border-radius: 50%;
+                                /* background-color: {{color}}; */
+                                }
+                        </style>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <th>Tailles</th>
+                    {% for taille in produit.tailles %}
+                        <td>{{taille}}</td>
+                    {% endfor %}
+                </tr>
+
+                <tr>
+                    <th>Images</th> 
+                {% for image in produit.images %}
+                    <td><img height="100" src="{{ asset('img/' ~ image)}}" alt="{{ produit.nom }}"></td>
+                {% endfor %}
+                </tr>
+                <tr>
+                    <th>Image Choisi</th> 
+                        <td><img height="100" src="{{ asset('img_choisi/' ~ produit.imageChoisi)}}" alt="{{ produit.nom }}"></td>
+                </tr>
+
+                <tr>
+                    <th>Description</th>
+                    <td>{{ produit.description }}</td>
+                </tr>
+                <tr>
+                    <th>Prix</th>
+                    <td>{{ produit.prix }} €</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="btn btn-info btn-sm" href="{{ path('produits_index') }}">Retour à la liste des Produits</a>
+
+        <a class="btn btn-primary btn-sm" href="{{ path('produits_edit', {'id': produit.id}) }}">Modifier</a>
+
+        <a class="btn btn-danger btn-sm" href="{{ path('produits_delete', {'id': produit.id}) }}">Supprimer</a>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} details {% endblock %}
+
+{% block body %}
+
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-6">
+        <form action="{{path('ajoutPanier')}}" method="POST">
+            <div id="carousel_{{ produit.id }}" class="carousel slide" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                    {% for keys, image in produit.images %}
+                        <li id="indicator_{{ keys }}" data-target="#carousel_{{ produit.id }}" data-slide-to="{{ keys }}" class="indicators {% if keys == 0 %}active{% endif %}"></li>
+                    {% endfor %}
+                </ol>
+
+                <div class="carousel-inner">
+                    {% for keys, image in produit.images %}
+                        <div class="carousel-item w-100 {% if keys == 0 %}active{% endif %}" id="image_{{ keys }}"><img class="w-100" src="{{ asset('img/' ~ image) }}" alt="{{ image }}" ></div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" data-slide="prev" href="#carousel_{{ produit.id }}" role="button">
+                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" data-slide="next" href="#carousel_{{ produit.id }}" role="button">
+                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 ml-5">
+            <p class="mt-5">{{produit.nom}}</p>
+
+            {# PRIX #}
+            <span class="orginal mt-5">{{produit.prix}}€</span>
+
+            {# TAILLES #}
+            <h6 class="mt-5">Tailles</h6>
+                <div class="d-flex">
+                    <select name="taille" class="form-control">
+                        <option value=""></option>
+                            {% for taille in produit.tailles %}
+                                <option value="{{taille}}">{{taille}}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+
+                <input type="hidden" name="produit" value="{{produit.id}}">
+
+
+                {# COLORS #}
+                <h6 class="mt-5">Colors</h6>
+                <select name="color" class="form-control">
+                    <option value=""></option>
+                        {% for color in produit.colors %}
+                            <option value="{{color}}" class="dot" style="background-color: {{color}}"></option>
+                                <style>
+                                    .dot{
+                                        display: inline-block;
+                                        height: 30px;
+                                        width: 30px;
+                                        border: 3px solid gray;
+                                        border-radius: 50%;
+                                        /* background-color: {{color}} */
+                                        }
+                                </style>
+                        {% endfor %}
+                </select>
+
+            {# QUANTITE #}
+            <h6 class="mt-5">Quantité</h6>
+                <select name="quantite" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option vlaue="4">4</option>
+                </select>
+
+
+            {# DESCRIPTION #}
+            <h6 class="mt-5">Description<span class="plus"><i data-id="{{ produit.id }}" class="fas fa-plus button-detail"></i></span></h6>
+            <p id="produit_{{ produit.id }}" class="description">{{produit.description}}</p>
+
+            <div class="mt-5">
+                {# <a class="btn btn-primary btn-sm text-center" href="{{ path('ajoutPanier', {'id': produit.id}) }}">Ajouter au panier</a> #}
+                <button type="submit" class="btn btn-primary btn-sm text-center" data-target="#ajoutPanier_{{produit.id}}">
+                    ajouter au panier
+                </button> 
+
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            // Affiche/masquer les détails d'un menu
+            $('.description').hide();
+
+            $('.button-detail').on('click', function() {
+            let id = $(this).data('id');
+            $(this).toggleClass('fa-plus');
+            $(this).toggleClass('fa-minus');
+            $('#produit_'+ id).toggle();
+            });
+
+        });
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+        {# <script>
+            $('.preview-item').on('mouseover', function() {
+                let id = $(this).attr('id');
+                $('.indicators').removeClass('active');
+                $('.carousel-item').removeClass('active');
+
+                $('#indicator_'+ id).addClass('active');
+                $('#image_'+ id).addClass('active');
+            });
+        </script> #}
+
+
+{% endblock %}

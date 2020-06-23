@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Paramètres - Bon Temps Roulé{% endblock %}
+
+{% block body %}
+
+<section class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="loginBox">
+        {{ form_start(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom, { 'attr': { 'class':'form-control'} }) }}
+            </div>
+
+
+            <div class="form-group">
+                {{ form_label(form.prenom) }}
+                {{ form_widget(form.prenom, { 'attr': { 'class':'form-control'} }) }}
+            </div>
+
+
+            <button type="submit">Mettre à jour mes informations</button>
+
+        {{ form_end(form) }}
+            
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
+
+.navbar-light .navbar-nav .nav-link {
+    color: #1a1a1a;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: gray;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    width: 18em;
+    background-color: gray;
+    color: white;
+    font-family: 'Noto Serif', serif;
+    font-size: 1em;
+}
+
+.dropdown-menu li{
+    height: 40px;
+}
+
+.dropdown-submenu {
+    position: relative;
+    padding: 15px 25px;
+}
+
+.dropdown-submenu a{
+    color: white;
+    text-decoration: none;
+}
+
+.sub{
+    padding:15px 25px;
+    color: white;
+
+}
+
+.sub a{
+    color: white;
+    font-family: 'Noto Serif', serif;
+    text-decoration: none;
+
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+    line-height: 30px;
+    padding: 15px 25px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+
+.dropdown-submenu .dropdown-menu{
+
+    border-bottom: 2px solid lightgray;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/************************CARD*****************************/
+
+.produit{
+    line-height: 7px;
+}
+
+.produit .prix{
+    color: black;
+    font-weight: 900;
+    font-size: 0.89em;
+}
+
+/*************************DETAILS**********************/
+.plus{
+    position: absolute;
+    right: 0;
+    color: #222;
+}
+
+.orginal{
+    color: #222;
+    font-size: 24px;
+    font-weight: 700;
+    vertical-align: middle;
+    font-family: 'Arial Black';
+}
+
+/**************************IMAGE**************************/
+
+.image{
+    background: url("../images/fond.jpg") no-repeat center;
+    background-size: cover;
+    height: 70vh;  
+}
+
+/**************************LOGIN*********************************/
+
+.loginBox{
+    position: relative;
+    width: 320px;
+    height: 420px;
+    background-color: #1d4670;
+    color: '#fff';
+    padding: 70px 30px;
+    margin-top: 8vh;
+    margin-bottom: 12vh;
+  }
+
+  .registerBox{
+    position: relative;
+    width: 320px;
+    height: 420px;
+    background-color: #1d4670;
+    color: '#fff';
+    padding: 70px 30px;
+    margin-top: 8vh;
+    margin-bottom: 12vh;
+  }
+
+  
+  .loginBox h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+    color: white;
+  }
+  
+  .loginBox p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .loginBox input{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .loginBox input[type="email"], input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0;
+  }
+  
+  .loginBox button{
+    border: none;
+    outline: none;
+    height: 50px;
+    background-color: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+  
+  .loginBox  button:hover{
+    cursor: pointer;
+    background-color: #ffc107;
+    color: #fff;
+  }
+  
+  .loginBox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray;
+  }
+  
+  .loginBox a:hover{
+    color: #ffc107;
+  }
+  
+  .avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+  }
+
+
+
+  .registerBox{
+    position: relative;
+    width: 700px;
+    height: 600px;
+    background-color: #1d4670;
+    color: '#fff';
+    padding: 90px 50px;
+    margin-top: 8vh;
+    margin-bottom: 12vh;
+  }
+
+  
+  .registerBox h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+    color: white;
+  }
+  
+  .registerBox .label{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .registerBox input{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .registerBox .input{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0;
+  }
+  
+  .registerBox button{
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 300px;
+    background-color: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+  }
+  
+  .registerBox  button:hover{
+    cursor: pointer;
+    background-color: #ffc107;
+    color: #fff;
+  }
+  
+  .registerBox a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgray;
+  }
+  
+  .registerBox a:hover{
+    color: #ffc107;
+  }
+  
+  .register{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+  }
+
+  .paraBox{
+    position: relative;
+    width: 700px;
+    height: 400px;
+    background-color: #1d4670;
+    color: '#fff';
+    padding: 90px 50px;
+    margin-top: 8vh;
+    margin-bottom: 12vh;
+  }
+
+  .paraBox a{
+    color: white;
+  }
+
+  .paraBox a:hover{
+    color: black;
+    text-decoration: none;
+  }
+
+  .separator{
+    height: 1px;
+    background-color: gray;
+  }
+
+  .paramBox{
+    position: relative;
+    width: 700px;
+    height: 530px;
+    background-color: #1d4670;
+    color: '#fff';
+    padding: 90px 50px;
+    margin-top: 8vh;
+    margin-bottom: 12vh;
+  }
+
+  .paramBox a{
+    color: white;
+  }
+
+  .paramBox a:hover{
+    color: black;
+    text-decoration: none;
+  }
+
+
+  /************************************FOOTER**********************************************/
+footer {
+    background-color: #38383d;
+    color: white;
+    padding: 20px;
+    font-size: 12px;
+    color: #9e9794;
+  }
+  
+  footer .link a{
+    color: #9e9794;
+  }
+  
+  footer img{
+    margin-left: 50px;
+  }
+  
+  footer h3 {
+    color: #d53b2d;
+  }
+  
+  footer .col-md-4 a i {
+    font-size: 2rem;
+    margin-right: 15px;
+    color: #9e9794 !important;
+  }
+  
+  footer hr{
+    background-color: #9e9794;
+  }
+
+  /**********************************CONTACT*****************************************************/
+.contact{
+  background: url("../img/shooping1.jpg") center no-repeat;
+  background-size: cover;
+  height: 30vh;
+  position: relative;
+}
+.contact h1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.dot{
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  border: 3px solid gray;
+  border-radius: 50%;
+  /* background-color: {{color}} */
+  }

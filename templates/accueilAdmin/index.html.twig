@@ -1,0 +1,59 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+
+	<section class="container mt-3">
+		<div class="row justify-content-center">
+
+            <div class="col-md-4">
+                <a href="{{ path ('produits_index') }}">
+                    <div class="card shadow p-3" style="width: 18rem;">
+                        <img src="{{ asset('logo.png')}}" class="card-img" alt="logo">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-center">Produits liste</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="col-md-4">
+                <a href="{{ path ('categorie_index') }}">
+                    <div class="card shadow p-3" style="width: 18rem;">
+                        <img src="{{ asset('logo.png')}}" class="card-img" alt="logo">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-center">Categories liste</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="{{ path ('options_index') }}">
+                    <div class="card shadow p-3" style="width: 18rem;">
+                        <img src="{{ asset('logo.png')}}" class="card-img" alt="logo">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-center">Options liste</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+		</div>
+
+
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4">
+                <a href="{{ path ('option_groupe_index') }}">
+                    <div class="card shadow p-3" style="width: 18rem;">
+                        <img src="{{ asset('logo.png')}}" class="card-img" alt="logo">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-center">Options groupe liste</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+	</section>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}OptionGroupe index{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8 mb-5">
+            <h1>Liste des option groupes ({{ option_groupes|length }})</h1>
+        </div>
+        <div class="col-md-4 mt-3">
+                <a href="{{ path('option_groupe_new') }}" class="btn btn-info btn-sm">
+                <i class="fas fa-plus"></i> Ajouter
+                </a>
+        </div>
+    </div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for option_groupe in option_groupes %}
+            <tr>
+                <td>{{ option_groupe.id }}</td>
+                <td>{{ option_groupe.nom }}</td>
+                <td>
+                    {% for categorie in option_groupe.categorie %}
+                        {{ categorie.nom }} - 
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" title="Voir option" href="{{ path('option_groupe_show', {'id': option_groupe.id}) }}">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" title="Modifier option" href="{{ path('option_groupe_edit', {'id': option_groupe.id}) }}">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" title="delete le option" href="{{ path('option_groupe_delete', {'id': option_groupe.id}) }}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
