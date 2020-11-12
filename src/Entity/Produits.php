@@ -5,9 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitsRepository")
+ * @ORM\Table(name="produits", indexes={@ORM\Index(columns={"nom", "description"}, flags={"fulltext"}) })
  */
 class Produits
 {
@@ -46,7 +49,7 @@ class Produits
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Options", inversedBy="produits")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $options;
 
@@ -62,6 +65,7 @@ class Produits
 
     /**
      * @ORM\Column(type="json", nullable=true)
+     * @Assert\NotBlank
      */
     private $tailles = [];
 
@@ -75,9 +79,30 @@ class Produits
      */
     private $optionGroupe;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="favoris")
+     */
+    private $favoris;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $inCart;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $count;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $total;
+
     public function __construct()
     {
         $this->panierProduits = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -234,6 +259,73 @@ class Produits
         $this->optionGroupe = $optionGroupe;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(User $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(User $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+        }
+
+        return $this;
+    }
+
+    public function getInCart(): ?bool
+    {
+        return $this->inCart;
+    }
+
+    public function setInCart(?bool $inCart): self
+    {
+        $this->inCart = $inCart;
+
+        return $this;
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
+    public function setCount(?int $count): self
+    {
+        $this->count = $count;
+
+        return $this;
+    }
+
+    public function getTotal(): ?string
+    {
+        return $this->total;
+    }
+
+    public function setTotal(?string $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 
 }

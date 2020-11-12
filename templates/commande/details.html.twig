@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandeController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="table-responsive-sm">
+                <table class="table table-striped text-center mt-5">
+                    <thead class="bg-light">
+                        <tr>
+                            <th scope="col" class="text-info">Numéro de commande</th>
+                            <th scope="col" class="text-info">Nom de produit</th>
+                            <th scope="col" class="text-warning">Quantité</th>
+                            <th scope="col" class="text-info">Prix</th>
+                            <th scope="col" class="text-warning">Color</th>
+                            <th scope="col" class="text-info">Tailles</th>
+                        </tr>
+                    </thead>
+                    {% for panierProduit in panierProduits %}
+                    <tbody>
+                        <tr>
+                            <td>{{panier.numeroCommande}}</td>
+                            <td>{{panierProduit.produits.nom}}</td>
+                            <td>{{panierProduit.quantite}}</td>
+                            <td>{{panierProduit.prix}}</td>
+                            <td>{{panierProduit.color}}</td>
+                            <td>{{panierProduit.taille}}</td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                 <a href="{{path ('commande') }}" class="btn btn-outline-secondary btn-sm">Retour de vos commandes</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

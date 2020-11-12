@@ -6,7 +6,7 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav m-auto">
+    <ul class="navbar-nav mr-auto">
 
       {# FEMME #}
       <div class="nav-item dropdown">
@@ -105,8 +105,8 @@
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="">Ados</a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ path('adosFille')}}">Fille(7-12 ans)</a></li>
-                  <li><a href="{{ path('adosGarcon')}}">Garçon(7-12 ans)</a></li>                  
+                  <li><a href="{{ path('adosFille')}}">Fille (7-12 ans)</a></li>
+                  <li><a href="{{ path('adosGarcon')}}">Garçon (7-12 ans)</a></li>                  
                 </ul>
               </li>
 
@@ -114,8 +114,8 @@
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="">Petits</a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ path('petitFille')}}">Fille(1-6 ans)</a></li>
-                  <li><a href="{{ path('petitGarcon')}}">Garçon(1-6 ans)</a></li>
+                  <li><a href="{{ path('petitFille')}}">Fille (1-6 ans)</a></li>
+                  <li><a href="{{ path('petitGarcon')}}">Garçon (1-6 ans)</a></li>
                 </ul>
               </li>
 
@@ -144,6 +144,13 @@
       </li>
     </ul>
 
+    {# SEARCH #}
+    <form class="form-inline my-2 my-lg-0" action="{{ path('search') }}" method="get">
+      <input class="form-control badge-pill mr-sm-2 ml-3" name="query" type="search" placeholder="Rechercher..." aria-label="Search">
+      <button class="my-2 my-sm-0 mr-5" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+
     <div class="nav-item dropdown">
             {% if app.user %}
                 <a aria-expanded="true" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
@@ -151,7 +158,7 @@
                     {{ app.user.prenom }}</a>
                 <div class="dropdown-menu" style="position: absolute; transform: translate3d(0px, 37px, 0px); top: 0px; left: 0px; will-change: transform;" x-placement="bottom-start">
                     <a class="dropdown-item" href="{{ path('compte') }}">Mon Compte</a>
-                    <a class="dropdown-item" href="">Mes Commandes</a>
+                    <a class="dropdown-item" href="{{ path('commande') }}">Mes Commandes</a>
                     <div class="dropdown-divider"></div>
                     {% if is_granted('ROLE_ADMIN') %}
                         <a class="dropdown-item text-warning" href="{{ path('accueil_admin') }}">Administration</a>

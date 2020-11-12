@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Produits;
+use App\Form\SearchProduitType;
+use App\Repository\ProduitsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -15,6 +18,7 @@ class AccueilController extends AbstractController
      */
     public function index()
     {
+
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
         ]);
@@ -39,6 +43,17 @@ class AccueilController extends AbstractController
     {
         return $this->render('accueil/propos.html.twig');
     }
+    /*****************DETAILS************************************ */
+    /**
+     * @Route("/produits/cards", name="cards")
+     */
+    public function cards()
+    {
+        $produits = $this->getDoctrine()->getRepository(Produits::class)->findAll();
+        return $this->render('accueil/produit.html.twig',[
+            'produits' => $produits
+        ]);
+    }
 
 
     /***********************************VETEMENT FEMME******************************************* */
@@ -46,13 +61,14 @@ class AccueilController extends AbstractController
     /**
      * @Route("/robe", name="robe")
      */
-    public function robe(){
+    public function robe()
+    {
     
         $robes = $this->getDoctrine()->getRepository(Produits::class)->findBy([
             'categorie' => 1,
             'options' => 1
-             ]);
-
+             ]);     
+     
         return $this->render('accueil/produit.html.twig', [
             'produits' => $robes
         ]);
@@ -232,7 +248,7 @@ class AccueilController extends AbstractController
         ]);
     }
 
-    /***********************************************************************************************************************************************HOMME***************************************************************************************************************************** */
+    /************************************HOMME******************************************** */
 
     /******************VETEMENT************************ */
 
@@ -487,6 +503,21 @@ class AccueilController extends AbstractController
 
         return $this->render('accueil/details.html.twig', [
             'produit' => $produitDetails
+        ]);
+    }
+
+/**************************************SEARCH*********************************************** */
+    /**
+     * @Route("/search", name="search")
+     */
+    public function search(ProduitsRepository $produitsRepos, Request $request)
+    {
+        $search = $request->query->get('query');
+
+            $produits = $produitsRepos->search($search);
+
+        return $this->render('accueil/produit.html.twig', [
+            'produits' => $produits,
         ]);
     }
 

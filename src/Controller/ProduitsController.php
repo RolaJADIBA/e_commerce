@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\DependencyInjection\Exception\EnvNotFoundException;
 use Symfony\Component\Filesystem\Filesystem;
+
 
 /**
  * @Route("/admin")
@@ -60,16 +62,19 @@ class ProduitsController extends AbstractController
                 );
                 $lists[] = $nouveau_nom;
             }
+            // if($produit->getImageChoisi()){
 
-            $nouveau_nom_choisi = md5(uniqid()).'.'.$image_choisi->guessExtension();
+                $nouveau_nom_choisi = md5(uniqid()).'.'.$image_choisi->guessExtension();
 
-            $image_choisi->move(
-                $this->getParameter('image_choisi'),
-                $nouveau_nom_choisi
-            );
+                $image_choisi->move(
+                    $this->getParameter('image_choisi'),
+                    $nouveau_nom_choisi
+                );
+
+                $produit->setImageChoisi($nouveau_nom_choisi);
+            // }
 
             $produit->setImages($lists);
-            $produit->setImageChoisi($nouveau_nom_choisi);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);
@@ -235,4 +240,53 @@ class ProduitsController extends AbstractController
 
         return $this->redirectToRoute('produits_index');
     }
+
+    /**
+     * @Route("/favoris/ajout/{id}", name="produits_ajout_favoris")
+     */
+    public function ajoutFavoris(Produits $produit)
+    {
+        if(!$produit){
+            throw new EnvNotFoundException('Pas d\'annonce trouvée');
+        }
+
+        $option = $produit->getOptions()->getId();
+        
+        $produits = $this->getDoctrine()->getRepository(Produits::class)->findBy(['options' => $option]);
+
+        $produit->addFavori($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($produit);
+        $em->flush();
+
+        return $this->render('accueil/produit.html.twig',[
+            'produits' => $produits
+        ]);       
+    }
+
+    /**
+     * @Route("/favoris/retrait/{id}", name="produits_retrait_favoris")
+     */
+    public function retraitFavoris(Produits $produit)
+    {
+        if(!$produit){
+            throw new EnvNotFoundException('Pas d\'annonce trouvée');
+        }
+
+        $option = $produit->getOptions()->getId();
+        
+        $produits = $this->getDoctrine()->getRepository(Produits::class)->findBy(['options' => $option]);
+        
+        $produit->removeFavori($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($produit);
+        $em->flush();
+
+        return $this->render('accueil/produit.html.twig',[
+            'produits' => $produits
+        ]);
+    }
+
 }

@@ -57,9 +57,15 @@ class User implements UserInterface
      */
     private $token;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Produits", mappedBy="favoris")
+     */
+    private $favoris;
+
     public function __construct()
     {
         $this->panier = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -203,6 +209,34 @@ class User implements UserInterface
     public function setToken(?string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Produits[]
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Produits $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Produits $favori): self
+    {
+        if ($this->favoris->contains($favori)) {
+            $this->favoris->removeElement($favori);
+            $favori->removeFavori($this);
+        }
 
         return $this;
     }

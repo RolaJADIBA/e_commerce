@@ -1,17 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 
+/********************BODY**********************************/
+
+body{
+  font-family: "Oswald", sans-serif !important;
+}
+
+/********************NAVBAR*******************************/
+
 .navbar-light .navbar-nav .nav-link {
     color: #1a1a1a;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-    color: gray;
-}
 
 .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute;
     width: 18em;
-    background-color: gray;
+    background-color: rgb(53, 52, 52);
     color: white;
     font-family: 'Noto Serif', serif;
     font-size: 1em;
@@ -24,7 +29,13 @@
 .dropdown-submenu {
     position: relative;
     padding: 15px 25px;
+    /* border-bottom: 2px solid white; */
 }
+
+/* .dropdown-submenu .dropdown-menu li{
+  border-bottom: 2px solid white;
+
+} */
 
 .dropdown-submenu a{
     color: white;
@@ -34,6 +45,7 @@
 .sub{
     padding:15px 25px;
     color: white;
+    /* border-bottom: 2px solid white; */
 
 }
 
@@ -94,6 +106,18 @@
     border-radius: 6px 0 6px 6px;
 }
 
+/***********NAVBAR SEARCH**************/
+nav .form-inline{
+  position: relative;
+}
+
+nav .form-inline button{
+  position: absolute;
+  left: 130px;
+  border: none;
+  color: gray;
+  background-color: #f7f7f9;
+}
 /************************CARD*****************************/
 
 .produit{
@@ -105,6 +129,7 @@
     font-weight: 900;
     font-size: 0.89em;
 }
+
 
 /*************************DETAILS**********************/
 .plus{
@@ -134,7 +159,7 @@
 .loginBox{
     position: relative;
     width: 320px;
-    height: 420px;
+    /* height: 300px; */
     background-color: #1d4670;
     color: '#fff';
     padding: 70px 30px;
@@ -142,16 +167,15 @@
     margin-bottom: 12vh;
   }
 
-  .registerBox{
+  /* .registerBox{
     position: relative;
     width: 320px;
-    height: 420px;
     background-color: #1d4670;
     color: '#fff';
     padding: 70px 30px;
     margin-top: 8vh;
     margin-bottom: 12vh;
-  }
+  } */
 
   
   .loginBox h1{
@@ -174,7 +198,7 @@
     margin-bottom: 20px;
   }
   
-  .loginBox input[type="email"], input[type="password"]{
+  .loginBox input[type="email"] {
     border: none;
     border-bottom: 1px solid #fff;
     background: transparent;
@@ -184,6 +208,19 @@
     font-size: 16px;
     padding: 0;
   }
+
+  .loginBox input[type="password"]{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0;
+  }
+
+  
   
   .loginBox button{
     border: none;
@@ -226,7 +263,7 @@
   .registerBox{
     position: relative;
     width: 700px;
-    height: 600px;
+    height: 570px;
     background-color: #1d4670;
     color: '#fff';
     padding: 90px 50px;
@@ -382,17 +419,17 @@ footer {
 
   /**********************************CONTACT*****************************************************/
 .contact{
-  background: url("../img/shooping1.jpg") center no-repeat;
+  background: url("../shooping1.jpg") center no-repeat;
   background-size: cover;
-  height: 30vh;
+  height: 85vh;
   position: relative;
 }
-.contact h1{
+/* .contact h1{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 .dot{
   display: inline-block;
   height: 30px;
@@ -401,3 +438,170 @@ footer {
   border-radius: 50%;
   /* background-color: {{color}} */
   }
+  .btnContact{
+    width: 450px;
+  }
+
+/********************************PAGE SITE******************************************/
+
+.fade-in {
+  -webkit-animation: fadeIn ease 8s;
+          animation: fadeIn ease 8s;
+}
+
+.fond {
+  height: 7vh;
+  background-color: white;
+  width: 100%;
+  position: relative;
+  z-index: 4;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.style {
+  height: 70vh;
+  text-align: center;
+  /* padding-top: calc(30vh - 50px); */
+  background-color: white;
+  z-index: 1;
+}
+
+.slide{
+  height: 30%;
+}
+
+.style p {
+  color: #fff;
+  font-size: 50px;
+  padding-bottom: 5px;
+}
+
+@media (max-width: 576px) {
+  [class*="style"] {
+    padding-top: calc(25vh - 50px);
+  }
+  [class*="barreleft"] {
+    width: 50%;
+  }
+  @-webkit-keyframes slideleft {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 25%;
+    }
+    100% {
+      width: 50%;
+    }
+  }
+  @keyframes slideleft {
+    0% {
+      width: 0%;
+    }
+    50% {
+      width: 25%;
+    }
+    100% {
+      width: 50%;
+    }
+  }
+}
+
+.barreleft {
+  height: 0.25vh;
+  background-color: #007cc3;
+  width: 70%;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.slideleft {
+  -webkit-animation: slideleft ease 1s;
+          animation: slideleft ease 1s;
+}
+
+@-webkit-keyframes slideleft {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes slideleft {
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes slide {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: 50px;
+  }
+}
+
+@keyframes slide {
+  0% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: 50px;
+  }
+}
+
+.btnAccueil {
+  -webkit-animation: slide ease 3s;
+          animation: slide ease 3s;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #007cc3;
+  margin-top: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.btnAccueil:hover {
+  background-color: #1d4670;
+  color: white;
+}
+/******************************************************************************/

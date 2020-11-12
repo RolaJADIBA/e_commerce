@@ -89,11 +89,6 @@ class OptionGroupe
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->nom;
-    }
-
     /**
      * @return Collection|Options[]
      */
@@ -154,6 +149,11 @@ class OptionGroupe
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 
 }

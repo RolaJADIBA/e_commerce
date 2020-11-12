@@ -4,57 +4,44 @@
 
 {% block body %}
 
-    <div class="container">
+    <div class="container mt-5">
 
             {% if app.session.get('panier')|length > 0 %}
             
             <table class="table">
-                <thead class="thead-dark">
+                <thead class="bg-light">
                     <tr>
-                        <th scope="col">action</th>
-                        <th scope="col">Titre</th>
-                        <th scope="col">Taille</th>
-                        <th scope="col">Color</th>
-                        <th scope="col">Prix</th>
-                        <th scope="col">Quantité</th>
+                        <th scope="col" class="text-info font-weight-bolde shadow">action</th>
+                        <th scope="col" class="text-info font-weight-bolde shadow">Titre</th>
+                        <th scope="col" class="text-info font-weight-bolde shadow">Taille</th>
+                        <th scope="col" class="text-info font-weight-bolde shadow">Color</th>
+                        <th scope="col" class="text-info font-weight-bolde shadow">Prix</th>
+                        <th scope="col" class="text-info font-weight-bolde shadow">Quantité</th>
                         {# <th scope="col">Total</th> #}
                     </tr>
                 </thead>
                 <tbody>
                     {% set total = 0 %}
                     {% for produit in produit_panier %}
-                        <tr>
+                        <tr class="table">
                             <th>
-                                {# <form action="{{ path('deleteProduitPanier', {'id': produit['id']}) }}" method="POST">
-                                    <input type="hidden" name="quantite" value="{{ produit['quantite'] }}">
-                                    <button class="btn btn-link text-danger" type="submit">
+                                <a href="#" class="btn btn-link text-danger" 
+                                    data-toggle="modal" 
+                                    data-target="#modal-delete"
+                                    data-id="{{produit.id}}" 
+                                    data-titre="{{produit.titre}}">
                                         <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form> #}
-                                <form action="{{ path('deleteProduitPanier') }}" method="POST">
-                                    <input type="hidden" name="quantite" value="{{ produit['quantite'] }}">
-                                    <button class="btn btn-link text-danger" type="submit">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </form>
+                                </a>
                             </th>
                             <th scope="row">{{ produit['titre'] }}</th>
                             <td>
+                                {% if produit['taille'] != "" %}
                                     {{ produit['taille'] }}
+                                {% endif %}
                             </td> 
                             <td>
-                            {% if produit['color'] is defined %}
-                               <div class="dot" style="background-color: {{produit['color']}}"></div>
-                               <style>
-                                    .dot{
-                                        display: inline-block;
-                                        height: 30px;
-                                        width: 30px;
-                                        border: 3px solid gray;
-                                        border-radius: 50%;
-                                        /* background-color: {{produit['color']}} */
-                                        }
-                                </style>
+                            {% if produit['color'] != "" %}
+                               <div> {{produit['color']}}</div>
                             {% endif %}
                             </td>                  
 
@@ -86,6 +73,31 @@
             </div>
 
         </section>
+
+
+
+    {# MODAL-SUPPRIMER #}
+
+    <div class="modal fade" id="modal-delete" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Supprimer un produit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="btn btn-primary">Valider</a>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
   
 
     <!-- Modal -->
@@ -145,7 +157,7 @@
     {% else %}
         <div class="alert alert-warning">Votre panier est vide.</div>
         <div class="text-center">
-            <img class="h-25 w-25" src="https://media0.giphy.com/media/A1HDOCf2qz84OU5NW7/source.gif">
+            <img class="h-50 w-50" src="{{ asset('emptycart.gif')}}">
         </div>
     {% endif %}
 
@@ -226,6 +238,19 @@
         form.submit();
         }
     </script>
+    <script>
+    window.onload = () => {
+        let supprimer = document.querySelectorAll(".text-danger");
+            for(let bouton of supprimer){
+                bouton.addEventListener("click", function () {
+                    document.querySelector(".modal-footer a").href = `/shop/panier/produit/delete/${this.dataset.id}`
+                    document.querySelector(".modal-body").innerText = `Etes-vous sur(e) de vouloir supprimer le produit
+                                                                        "${this.dataset.titre}"`
+                })
+            }
+    }
+    </script>
+
 
 {% endblock %}
 

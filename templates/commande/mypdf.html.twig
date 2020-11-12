@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Pdf</title>
+        <style>
+              body{
+                  border: 4px solid pink;
+                  padding: 25px;
+              }
+            h1{
+                color: #007cc3;
+            }
+             .e-commerce{
+                 text-align: right;
+             }
+             .demo{
+                 position: relative;
+                 top: 80px;
+             }
+             #demo-table {
+                 justify-content: center;   
+                 text-align: center;
+                background-color: #EFECEC;
+                border-radius: 10px;
+                 border: 1px solid #717070;
+                 margin: auto;
+                 width: 90%;
+                 padding: 15px;
+                 font-size: 0.89em; 
+                }
+            .motantTotal{
+                text-align: right;
+            }
+
+        </style>
+    </head>
+    <body>
+
+        <div class="pdfLogo"></div>
+
+        <div class="container-fluid">
+
+            <div class="d-flex">
+                <h1>E-commerce</h1>
+                <div class="e-commerce">
+                    <p>E-commerce</p>
+                    <p>8th Floor, Bin Awedah Group BLDG. In</p>
+                    <p>Abu Dhabi P.O.BOX: 72267</p>
+                </div>
+            </div>
+
+            <div class="use">
+                <p><strong>Facturé par : </strong>{{paniers.user.prenom}} {{ paniers.user.nom }}</p>
+            </div>
+            <p><strong>Réalisé le : </strong> {{paniers.Date|date("d/m/Y")}}</p>
+            <p><strong>Facture N: </strong> {{paniers.numeroCommande}}</p>
+            
+            <div class="demo">
+            <table id="demo-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Produit</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set total = 0 %}
+                    {% for produitPanier in produitPaniers %}
+                    {% set total = produitPanier.prix * produitPanier.quantite %}
+                        <tr>
+                            <td>{{ produitPanier.quantite }}</td>
+                            <td>{{ produitPanier.produits.nom }}</td>
+                            <td>{{ produitPanier.prix }} €</td>
+                            <td>{{ total }} €</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th colspan="4" class="motantTotal">Montant TTC : {{ paniers.montantTotal }} €</th>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </body>
+</html>

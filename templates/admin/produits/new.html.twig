@@ -6,65 +6,66 @@
 
     <section class="container">
         <h1>Ajouter un nouveau produit</h1>
-        {{ form_start(form) }}
+        {# {{ form_start(form) }}
         <div class="row">
             <div class="col-md-8 p-3">
-                {{ form_row(form.nom,{ 'attr': { 'class':'form-control'} }) }}
-                {{ form_row(form.description, { 'attr': { 'class':'form-control'} }) }}
-                {{ form_row(form.prix, { 'attr': { 'class':'form-control'} }) }}
-                {{ form_row(form.categorie, { 'attr': { 'class':'form-control'} }) }}
-                {# {{ form_row(form.options, { 'attr': { 'class':'form-control'} }) }} #}
-                {{ form_row(form.colors, { 'attr': { 'class':'form-control'} }) }}
-                {{ form_row(form.optionGroupe, { 'attr': { 'class':'form-control'} }) }}
-
+                {{ form_row(form.nom) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.prix) }}
+                {{ form_row(form.categorie) }}
+                {{ form_row(form.colors) }}
+                {{ form_row(form.optionGroupe) }}
             </div>
             <div class="col-md-4 p-3 border-0 ">
-                {{ form_row(form.images, { 'attr': { 'class':'form-control'} }) }}
-                {{ form_row(form.image_choisi, { 'attr': { 'class':'form-control'} }) }}
+                {{ form_row(form.images) }}
+                {{ form_row(form.image_choisi) }}
                 <button class="btn btn-primary btn-block btn-sm mt-3">Publier</button>
                 <a href="{{ path('produits_index') }}" class="btn btn-outline-secondary btn-block btn-sm mt-3">Retour à la liste des produits</a>
             </div>
 
         </div>
-        {{ form_end(form) }}
+        {{ form_end(form) }} #}
+            {{ include('admin/produits/_form.html.twig') }}
+
+            <a href="{{ path('produits_index') }}" class="btn btn-outline-secondary btn-block btn-sm mt-3 mb-5">Retour à la liste des produits</a>
+
 
     </section>
+
 {% endblock %}
 
 {% block javascripts %}
 
-    {# parent positionne à l endroit meme, les éléments contenus dans le block""javascripts" #}
-    {# contenu dan sle fichier Twig base.html.twig #}
+
 {{parent()}} 
-<script>
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+ <script>
+
     $(function(){
+        $("#produits_colors").select2()
+        $("#produits_tailles").select2()
+    })
 
-        $("[type='file']").change(function(e){
-            $(this).siblings('label').html(e.target.files[0].name);
-        });
+    $(document).on('change','#produits_optionGroupe', '#produits_options' ,function () {
+    let $field = $(this)
+    let $optionGroupeField = $('#produits_optionGroupe')
+    let $form = $field.closest('form')
+    let target = '#' + $field.attr('id').replace('options', 'tailles').replace('optionGroupe', 'options')
+    // Les données à envoyer en Ajax
+    let data = {}
+    data[$optionGroupeField.attr('name')] = $optionGroupeField.val()
+    data[$field.attr('name')] = $field.val()
+    // On soumet les données
+    $.post($form.attr('action'), data).then(function (data) {
+        // On récupère le nouveau <select>
+        let $input = $(data).find(target)
+        // On remplace notre <select> actuel
+        $(target).replaceWith($input)
+    })
+    })
 
-        $('#produit_option').change(function() {
-            // ... retrieve the corresponding form.
-            var $form = $(this).closest('form');
-            // Simulate form data, but only include the selected sport value.
-            var data = {};
-            data[$(this).attr('name')] = $(this).val();
-            // Submit data via AJAX to the form's action path.
-            $.ajax({
-                url : $form.attr('action'),
-                type: $form.attr('method'),
-                data : data,
-                success: function(html) {
-                    // Replace current position field ...
-                    $('#produit_tailles').replaceWith(
-                         // ... with the returned one from the AJAX response.
-                         $(html).find('#produit_tailles')
-                    );
-                // Position field now displays the appropriate positions.
-                }
-            });
-        });
-    });
+</script> 
 
-</script>
 {% endblock %}

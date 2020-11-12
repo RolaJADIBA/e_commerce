@@ -40,8 +40,8 @@
             {# TAILLES #}
             <h6 class="mt-5">Tailles</h6>
                 <div class="d-flex">
-                    <select name="taille" class="form-control">
-                        <option value=""></option>
+                    <select name="taille" class="form-control" required>
+                        <option value="">choisir votre taille</option>
                             {% for taille in produit.tailles %}
                                 <option value="{{taille}}">{{taille}}</option>
                             {% endfor %}
@@ -53,20 +53,10 @@
 
                 {# COLORS #}
                 <h6 class="mt-5">Colors</h6>
-                <select name="color" class="form-control">
-                    <option value=""></option>
+                <select name="color" class="form-control" required>
+                    <option value="">choisir votre coleur</option>
                         {% for color in produit.colors %}
-                            <option value="{{color}}" class="dot" style="background-color: {{color}}"></option>
-                                <style>
-                                    .dot{
-                                        display: inline-block;
-                                        height: 30px;
-                                        width: 30px;
-                                        border: 3px solid gray;
-                                        border-radius: 50%;
-                                        /* background-color: {{color}} */
-                                        }
-                                </style>
+                            <option value="{{color}}">{{color}}</option>
                         {% endfor %}
                 </select>
 
@@ -82,7 +72,7 @@
 
             {# DESCRIPTION #}
             <h6 class="mt-5">Description<span class="plus"><i data-id="{{ produit.id }}" class="fas fa-plus button-detail"></i></span></h6>
-            <p id="produit_{{ produit.id }}" class="description">{{produit.description}}</p>
+            <p id="produit_{{ produit.id }}" class="description">{{produit.description|striptags|slice(0, 180)}}</p>
 
             <div class="mt-5">
                 {# <a class="btn btn-primary btn-sm text-center" href="{{ path('ajoutPanier', {'id': produit.id}) }}">Ajouter au panier</a> #}
@@ -106,7 +96,7 @@
 
         $(document).ready(function () {
 
-            // Affiche/masquer les détails d'un menu
+            // Affiche/masquer les détails d'un produit
             $('.description').hide();
 
             $('.button-detail').on('click', function() {
@@ -116,7 +106,7 @@
             $('#produit_'+ id).toggle();
             });
 
-        });
+     });
 
     </script>
 

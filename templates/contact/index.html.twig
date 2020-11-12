@@ -4,36 +4,40 @@
 
 {% block body %}
     <div class="container">
-
-        <div class="text-center contact mt-5">
-            <h1 class="font-weight">Contactez-moi</h1>
-        </div>
-
-        <div class="p-3 border-0 shadow">
-            {% for message in app.flashes('success1') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
-            {{ form_start(form) }}
-            <div class="row">
-                <div class="col-md-6">
-                    {{ form_row(form.nom,{ 'attr': { 'class':'form-control'} }) }}
-                </div>
-                <div class="col-md-6 ">
-                    {{ form_row(form.prenom, { 'attr': { 'class':'form-control'} }) }}
-                </div>
+        <div class="contact mt-5 p-5">
+            <div class="text-center mt-5">
+                <h1 class="font-weight">Contactez-moi</h1>
             </div>
-            {{ form_row(form.email, { 'attr': { 'class':'form-control'} }) }}
-            {{ form_row(form.objet, { 'attr': { 'class':'form-control'} }) }}
-            {{ form_row(form.message, { 'attr': { 'class':'form-control'} }) }}
 
-            <button class="btn btn-primary mt-3" type="submit">Envoyer</button>
-            {{ form_end(form) }}
+            <div class="p-3 border-0 shadow">
+                {% for message in app.flashes('success1') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.nom,{ 'attr': { 'class':'form-control' , 'placeholder' : 'Votre nom'} }) }}
+                    </div>
+                    <div class="col-md-6 ">
+                        {{ form_row(form.prenom, { 'attr': { 'class':'form-control', 'placeholder' : 'Votre prenom'} }) }}
+                    </div>
+                </div>
+                {{ form_row(form.email, { 'attr': { 'class':'form-control' , 'placeholder' : 'Votre email'} }) }}
+                {{ form_row(form.objet, { 'attr': { 'class':'form-control', 'placeholder' : 'Votre object'} }) }}
+                {{ form_row(form.message, { 'attr': { 'class':'form-control', 'placeholder' : 'Votre message'} }) }}
+                <div class="row justify-content-center">
+                    <button class="btn btn-primary mt-3 btnContact" type="submit">Envoyer</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+
         </div>
 
     </div>
+
 
 
 {% endblock %}

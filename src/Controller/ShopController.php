@@ -79,15 +79,15 @@ class ShopController extends AbstractController
     public function index()
     {
 
-        $panier = $this->session->get('panier');
+        $paniers = $this->session->get('panier');
 
         $produits = $this->getDoctrine()->getRepository(Produits::class)->findAll();
 
-        if($panier != null){
+        if($paniers != null){
 
             $nouveau_Panier = [];
 
-                foreach ($panier as $panier) {
+                foreach ($paniers as $panier) {
 
                     $produits_panier = $this->getDoctrine()->getRepository(Produits::class)->findBy(['id' => $panier['produit_id']]);
 
@@ -108,6 +108,8 @@ class ShopController extends AbstractController
             }           
             }    
             else{
+                $nouveau_Panier = [];
+                $panier = [];
                 $produit_panier = [];
             }  
 
@@ -121,31 +123,26 @@ class ShopController extends AbstractController
     /*******************************DELETE PRODUIT************************************************** */
 
     /**
-     * @Route("/shop/panier/produit/delete", name="deleteProduitPanier")
+     * @Route("/shop/panier/produit/delete/{id}", name="deleteProduitPanier")
      */
-    public function deleteProduitPanier(Request $request)
+    public function deleteProduitPanier($id)
     {
-        // Récupère le panier
-        $paniers = $this->session->get('panier');
 
+        $paniers = $this->session->get('panier', []);
 
-        // foreach($paniers as $panier){
-    
-        //     if($panier['quantite']){
+        foreach($paniers as $key => $panier){
 
-        //         unset($panier['produit_id']);
-        //         //↑ Produit qu'on veut supprimé    
-        //     }
+            foreach($panier as $cle => $pan){
 
-        //     $this->session->set('panier', $panier);
-    
-        // }
-        // $panier[ID DU PRODUIT] => QUANTITE
-        // if(array_key_exists($id, $panier)) {
+               if($pan === $id){
+                   unset($paniers[$key]);
+               }
+            }
+         }
 
-        // Insère les nouvelles données dans le panier
+        $this->session->set('panier', $paniers);
 
-        return $this->redirectToRoute('accueil');
+        return $this->redirectToRoute('shop');
 
     }
 
@@ -173,7 +170,7 @@ class ShopController extends AbstractController
         $total = $request->request->get('total');
 
         // Paramétrage de la clès API de STRIPE
-        \Stripe\Stripe::setApiKey("sk_test_jLx93cRgmH1MgembEz0bB8lz00gXgJQOl3");
+        \Stripe\Stripe::setApiKey("sk_test_9C3nIrEYCAzA2Pa02bfAybpj00kF4Qpsin");
 
         // On créer une charge de paiement
         $charge = \Stripe\Charge::create([

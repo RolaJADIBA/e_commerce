@@ -27,6 +27,9 @@
 
                     {{ form_label(registrationForm.email, 'EMAIL', {'label_attr': {'class': 'label'}}) }}
                     {{ form_widget(registrationForm.email, { 'attr': {'class': 'input','placeholder': "enter your email"} }) }}
+                <div class="row mt-3 ml-3">
+                    {{ form_row(registrationForm.agreeTerms) }}
+                </div>
 
                 </div>
                 <div class="col-md-6 mt-3">
@@ -46,11 +49,8 @@
 
                 </div>
 
-                <div class="row">
-                    {{ form_row(registrationForm.agreeTerms) }}
-                </div>
 
-                <div class="row justify-content-center mt-3">
+                <div class="row justify-content-center mt-5">
                     <button class="btn">Register</button>
                 </div>
 
